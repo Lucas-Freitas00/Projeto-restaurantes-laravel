@@ -14,4 +14,4 @@ Para instalação Faça :
 - Renomeie o arquivo .env.example para .env e altere as configurações de conexão com banco de dados
 - Execute o comando para instalar as migrations -> "php artisan migrate  --seed"  
 - Agora basta executar -> "php artisan serve"
-- Feito tudo isso sua aplicação estará rodando no endereço 127.0.0.1:3000
+- Feito tudo isso sua aplicação estará rodando no endereço 127.0.0.1:8000
