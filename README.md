@@ -1,4 +1,4 @@
-#  <img src="http://logonoid.com/images/laravel-logo.png" width="35"> Laravel - Restaurantes
+#  <img src="/public/images/print_restaurante1.png" width="100"> Laravel - Restaurantes
 
 Projeto para aprendizado usando o framework PHP - Laravel..
 
