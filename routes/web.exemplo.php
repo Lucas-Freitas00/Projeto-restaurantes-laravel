@@ -14,23 +14,26 @@
 // Testes
 
 // Teste namespace
-Route::namespace('Test')->group(function(){
+
+use Illuminate\Support\Facades\Route;
+
+Route::namespace('Test')->group(function () {
   Route::get('/users/{id}', 'UserController@show'); // Test\UserController
 });
 
 // Teste view
- Route::view('/view', 'minhaView', ['name' => 'Mateus']); //vai chamar a view minhaView
+Route::view('/view', 'minhaView', ['name' => 'Mateus']); //vai chamar a view minhaView
 
 //Teste prefix
-Route::prefix('users')->name('users_')->group(function(){
+Route::prefix('users')->name('users_')->group(function () {
 
-  Route::get('/', function(){
+  Route::get('/', function () {
     return 'users index';
   })->name('index'); //users_index
 
-  Route::get('/1', function(){
+  Route::get('/1', function () {
     return 'users 1';
-  })->name('single');//users_index
+  })->name('single'); //users_index
 
 });
 
@@ -42,20 +45,20 @@ Route::resource('/users', 'Test\UserController');
 
 // Testes com select
 Route::get('/test/show', function () {
-    // $sql = 'SELECT * FROM USERS WHERE ID = ?';
-    // $users = DB::select($sql, [4]);
+  // $sql = 'SELECT * FROM USERS WHERE ID = ?';
+  // $users = DB::select($sql, [4]);
 
-    // $users = DB::table('users')
-    //              ->where('id', '=', 4)
-    //              ->select('id', 'name')
-    //              ->first();
-    //              // ->toSql();
-    //              // ->get();
+  // $users = DB::table('users')
+  //              ->where('id', '=', 4)
+  //              ->select('id', 'name')
+  //              ->first();
+  //              // ->toSql();
+  //              // ->get();
 
-    // $users = \App\User::all();
-    $users = \App\User::where('id', 4)->get();
+  // $users = \App\User::all();
+  $users = \App\User::where('id', 4)->get();
 
-    dd($users);
+  dd($users);
 });
 
 // Testes com insert/update
@@ -72,9 +75,9 @@ Route::get('/test/save', function () {
     'email' => 'testee',
     'password' =>  bcrypt('teste')
   ];
-   $user = new \App\User();
-   $user->create($userData);
-   // $user->update($userData);
+  $user = new \App\User();
+  $user->create($userData);
+  // $user->update($userData);
 
 });
 
@@ -82,18 +85,17 @@ Route::get('/test/save', function () {
 Route::get('/test/delete', function () {
   // $user = \App\User::find(10);
   // $user->delete();
-  $user = \App\User::whereIn('id', [2,3,4]);
+  $user = \App\User::whereIn('id', [2, 3, 4]);
   $user->delete();
-
 });
 
 // Testes com rota dinamica
-Route::get('hello/{name}', function($name){
+Route::get('hello/{name}', function ($name) {
   // return view('hello',['name' => $name] );
-  return view('hello', compact($name) );
+  return view('hello', compact($name));
 });
 
-Route::get('show/{name?}', function($name = 'Mateus'){
+Route::get('show/{name?}', function ($name = 'Mateus') {
   if (is_null($name))
     return 'teste';
   return $name;
@@ -105,12 +107,12 @@ Route::get('show/{name?}', function($name = 'Mateus'){
 //     return 'teste';
 // })->middleware('test');
 
-Route::group(['middleware' => ['teste', 'auth']], function(){
-  Route::get('middle', function(){ 
-      return 'middle';
+Route::group(['middleware' => ['teste', 'auth']], function () {
+  Route::get('middle', function () {
+    return 'middle';
   });
-  Route::get('middle/2', function(){ 
-      return 'middle/2';
+  Route::get('middle/2', function () {
+    return 'middle/2';
   });
 });
 
